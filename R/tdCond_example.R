@@ -1,5 +1,6 @@
 library(rlsims)
 library(tidyverse)
+library(cowplot)
 
 td_cond_agent <- rl_define_new_agent(
   model_type = "TD Conditioning",
@@ -57,3 +58,5 @@ tdCond$pe_data %>%
   ) +
   theme(legend.position = "none") +
   facet_wrap(~trial)
+
+
