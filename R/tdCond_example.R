@@ -1,6 +1,5 @@
 library(rlsims)
-library(ggplot2)
-library(magrittr)
+library(tidyverse)
 
 td_cond_agent <- rl_define_new_agent(
   model_type = "TD Conditioning",
@@ -47,3 +46,14 @@ tdCond$
     )
   )$
   simulate_agent()
+
+tdCond$pe_data %>%
+  filter(trial %in% c(1:5)) %>%
+  ggplot() +
+  geom_line(aes(x = episode, y = value, color = trial)) +
+  cowplot::theme_cowplot(
+    font_size = 18,
+    rel_large = 1
+  ) +
+  theme(legend.position = "none") +
+  facet_wrap(~trial)
